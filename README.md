@@ -1,4 +1,4 @@
-# nodejs-ws-chatapp
+# NodeJs Chat App
 Chat app built with Node JS
 
 ## Tutorials
