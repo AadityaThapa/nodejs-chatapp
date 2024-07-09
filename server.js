@@ -21,29 +21,22 @@ const expressServer = app.listen(PORT, () => {
 	console.log(`listening on port ${PORT}`);
 });
 
-const io = new Server(
-	expressServer,
-	{
-		cors: {
-			origin: "https://nodejs-chatapp.vercel.app/api",
-		},
-	},
-	// , {
+const io = new Server(expressServer, {
 	// Cross-Origin Resource Sharing
 	// what i understood is that we need this so we can access resources from a different domains or ports
 	// if the client and server is in different domains then i need to specify the client domain in here
-	// cors: {
-	// 	origin:
-	// 		process.env.NODE_ENV === "production"
-	// 			? false
-	// 			: ["http://localhost:5500", "http://127.0.0.1:5500"],
-	// ? if true [note: if we are in prod then replace the false value with the client's domain]
-	// : if false
-	// if our server is in prod mode then returns false meaning no access to the socket (i guess??)
-	// else if our server is in dev mode then it gives localhost:5500 access to the socket
-	// liveserver extension uses localhost:5500 as it's default port
-	// },
-);
+	cors: {
+		origin:
+			process.env.NODE_ENV === "production"
+				? false
+				: ["http://localhost:5500", "http://127.0.0.1:5500"],
+		// ? if true [note: if we are in prod then replace the false value with the client's domain]
+		// : if false
+		// if our server is in prod mode then returns false meaning no access to the socket (i guess??)
+		// else if our server is in dev mode then it gives localhost:5500 access to the socket
+		// liveserver extension uses localhost:5500 as it's default port
+	},
+});
 
 // Once we have "connection" established, we listen for sockets.
 io.on("connection", (socket) => {
