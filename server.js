@@ -28,15 +28,13 @@ const io = new Server(expressServer, {
 	cors: {
 		origin:
 			process.env.NODE_ENV === "production"
-				? "https://nodejs-chatapp.vercel.app/"
+				? false
 				: ["http://localhost:5500", "http://127.0.0.1:5500"],
 		// ? if true [note: if we are in prod then replace the false value with the client's domain]
 		// : if false
 		// if our server is in prod mode then returns false meaning no access to the socket (i guess??)
 		// else if our server is in dev mode then it gives localhost:5500 access to the socket
 		// liveserver extension uses localhost:5500 as it's default port
-		methods: ["GET", "POST"],
-		allowedHeaders: ["Content-Type"],
 	},
 });
 
