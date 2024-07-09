@@ -23,6 +23,11 @@ const expressServer = app.listen(PORT, () => {
 
 const io = new Server(
 	expressServer,
+	{
+		cors: {
+			origin: "https://nodejs-chatapp.vercel.app/api",
+		},
+	},
 	// , {
 	// Cross-Origin Resource Sharing
 	// what i understood is that we need this so we can access resources from a different domains or ports
