@@ -23,11 +23,6 @@ const expressServer = app.listen(PORT, () => {
 
 const io = new Server(
 	expressServer,
-	{
-		cors: {
-			origin: ["http://localhost:5500", "http://127.0.0.1:5500"],
-		},
-	},
 	// , {
 	// Cross-Origin Resource Sharing
 	// what i understood is that we need this so we can access resources from a different domains or ports

@@ -1,5 +1,5 @@
 // Initialize client side socket
-const socket = new io("http://localhost:5500");
+const socket = new io("ws://localhost:3500");
 
 // Select the html elements
 const input = document.querySelector("input");
