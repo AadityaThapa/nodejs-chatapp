@@ -1,0 +1,10 @@
+{
+	"routes": [
+		{
+			"source": "/",
+			"headers": {
+				"Access-Control-Allow-Origin": "*"
+			}
+		}
+	]
+}
