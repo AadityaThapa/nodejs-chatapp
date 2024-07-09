@@ -28,7 +28,7 @@ const io = new Server(expressServer, {
 	cors: {
 		origin:
 			process.env.NODE_ENV === "production"
-				? "https://nodejs-chatapp-wz4v.onrender.com"
+				? ["https://nodejs-chatapp-wz4v.onrender.com", "http://localhost:5500"]
 				: ["http://localhost:5500", "http://127.0.0.1:5500"],
 		// ? if true [note: if we are in prod then replace the false value with the client's domain]
 		// : if false
