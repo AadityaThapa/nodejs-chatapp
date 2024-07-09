@@ -1,10 +1,5 @@
 // Initialize client side socket
-const socket = new io("https://nodejs-chatapp.vercel.app/", {
-	withCredentials: true,
-	extraHeaders: {
-		"my-custom-header": "abcd",
-	},
-});
+const socket = new io("ws://localhost:3500");
 
 // Select the html elements
 const input = document.querySelector("input");

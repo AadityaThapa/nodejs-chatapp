@@ -27,7 +27,6 @@ const io = new Server(expressServer, {
 	// if the client and server is in different domains then i need to specify the client domain in here
 	cors: {
 		origin: "https://nodejs-chatapp.vercel.app/",
-		allowedHeaders: ["my-custom-header"],
 		credentials: true,
 
 		// process.env.NODE_ENV === "production"
