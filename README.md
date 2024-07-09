@@ -16,7 +16,7 @@ npm i
 ```
 npm run dev
 ```
-open up [localhost:3500](localhost:3500) on your browser
+open up [localhost:3500](http://localhost:3500) on your browser
 
 ## Dependencies
 - Socket.io for websocket server
