@@ -1,5 +1,10 @@
 // Initialize client side socket
-const socket = new io("ws://localhost:3500");
+const socket = new io("https://nodejs-chatapp-wz4v.onrender.com", {
+	withCredentials: true,
+	extraHeaders: {
+		"my-custom-header": "abcd",
+	},
+});
 
 // Select the html elements
 const input = document.querySelector("input");

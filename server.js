@@ -26,11 +26,9 @@ const io = new Server(expressServer, {
 	// what i understood is that we need this so we can access resources from a different domains or ports
 	// if the client and server is in different domains then i need to specify the client domain in here
 	cors: {
-		origin: [
-			"https://nodejs-chatapp-wz4v.onrender.com",
-			"http://localhost:5500",
-			"http://127.0.0.1:5500",
-		],
+		origin: "https://nodejs-chatapp-wz4v.onrender.com",
+		allowedHeaders: ["my-custom-header"],
+		credentials: true,
 
 		// process.env.NODE_ENV === "production"
 		// 	? false
