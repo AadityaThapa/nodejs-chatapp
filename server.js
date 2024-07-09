@@ -3,18 +3,18 @@ import express from "express";
 import { Server } from "socket.io";
 // nodejs modules
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+// import { fileURLToPath } from "node:url";
 
 // making a workaround cause __dirname isn't defined on es modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = import.meta.dirname; // path.dirname(__filename);
 
 // setting up the express server
 const app = express();
 const PORT = process.env.PORT || 3500;
 
-// Using the static assets
-app.use(express.static(path.join(__dirname, "public")));
+// Using the static assets from current directories public folder
+app.use(express.static(path.join(import.meta.dirname, "public")));
 
 // Listens for connections on port
 const expressServer = app.listen(PORT, () => {
@@ -40,12 +40,32 @@ const io = new Server(expressServer, {
 
 // Once we have "connection" established, we listen for sockets.
 io.on("connection", (socket) => {
+	const shortId = socket.id.substring(0, 5);
+
 	console.log(`User ${socket.id} connected`);
+
+	// sends this message upon connection only to the user
+	socket.emit("message", "Welcome to chat app!");
+
+	// sends the message to everone else but not the user that just connected
+	socket.broadcast.emit("message", `${shortId} connected!`);
+
 	// listen for a message, and runs the callback function
 	socket.on("message", (data) => {
 		// buffer is a nodejs module which deals with binary data
 		console.log(`${socket.id}: ${Buffer.from(data)}`);
 		// Send that message back as a string.
-		io.emit("message", `${socket.id.substring(0, 5)}: ${data}`);
+		io.emit("message", `${shortId}: ${data}`);
+	});
+
+	// listen for disconnections
+	socket.on("disconnect", () => {
+		// sends to everyone expect the user who disconnected
+		socket.broadcast.emit("message", `User ${shortId} disconnected`);
+	});
+
+	socket.on("activity", (name) => {
+		// again, sends to everyone expect the user
+		socket.broadcast.emit("activity", name); // `User ${shortId} is typing...`;
 	});
 });
