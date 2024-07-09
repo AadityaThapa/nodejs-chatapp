@@ -1,5 +1,5 @@
 // Initialize client side socket
-const socket = new io("http://nodejs-chatapp.vercel.app");
+const socket = new io("http://localhost:5500");
 
 // Select the html elements
 const input = document.querySelector("input");
