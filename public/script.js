@@ -1,5 +1,5 @@
 // Initialize client side socket
-const socket = new io("https://nodejs-chatapp-wz4v.onrender.com", {
+const socket = new io("https://nodejs-chatapp.vercel.app/", {
 	withCredentials: true,
 	extraHeaders: {
 		"my-custom-header": "abcd",
