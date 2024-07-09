@@ -35,6 +35,8 @@ const io = new Server(expressServer, {
 		// if our server is in prod mode then returns false meaning no access to the socket (i guess??)
 		// else if our server is in dev mode then it gives localhost:5500 access to the socket
 		// liveserver extension uses localhost:5500 as it's default port
+		methods: ["GET", "POST"],
+		allowedHeaders: ["Content-Type"],
 	},
 });
 
