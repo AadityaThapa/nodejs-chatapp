@@ -25,7 +25,7 @@ const io = new Server(
 	expressServer,
 	{
 		cors: {
-			origin: "*",
+			origin: "https://nodejs-chatapp.vercel.app/",
 		},
 	},
 	// , {
